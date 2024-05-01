@@ -1,0 +1,25 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Заявки</title>
+    <link href="/static/css/default.css" rel="stylesheet">
+    <link href="/static/css/obligations.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<h1>Сданные предметы</h1>
+
+<div th:each="obligation : ${obligations}" class="obligationsList">
+    <div class="obligation">
+        <div class="obligationInfo">
+            <p th:text="'Описание:'+${obligation.getDescription()}" class="obligation_description"></p>
+            <p th:text="'Сумма долга:'+${obligation.getDebt()}" class="obligation_debt"></p>
+            <p th:text="'Погашено:'+${obligation.getContributed()}" class="obligation_contributed"></p>
+            <a th:href="@{/obligations/make-contribution/{id}(id=${obligation.getObligationId()})}"
+               class="obligation_makeContribution">Внести сумму</a>
+        </div>
+        <img th:src="'/photos/'+${obligation.getPhotoName()}" class="obligation_photo"/>
+    </div>
+</div>
+</body>
+</html>

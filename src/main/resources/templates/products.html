@@ -1,0 +1,22 @@
+<!DOCTYPE>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Доступные товары</title>
+  <link href="/static/css/default.css" rel="stylesheet">
+  <link href="/static/css/products.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/header :: header"> </div>
+<div th:each="product : ${products}" class="productsList">
+  <div class="product">
+    <div class="productInfo">
+      <p th:text="'Описание:'+${product.getDescription()}" class="product_description"></p>
+      <p th:text="'Цена:'+${product.getPrice()}" class="product_price"></p>
+      <a th:href="@{/products/buy/{id}(id=${product.getProductId()})}"
+         class="buyProduct">Купить</a>
+    </div>
+    <img th:src="'/photos/'+${product.getPhotoName()}" class="product_photo"/>
+  </div>
+</div>
+</body>
+</html>

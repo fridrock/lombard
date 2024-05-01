@@ -1,0 +1,25 @@
+div{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    backdrop-filter: blur(10vw);
+    border-radius: 2vw;
+    padding: 2vw;
+}
+p {
+    font-size: 3vw;
+    text-transform: uppercase;
+}
+
+div > a{
+    padding: 0.5vw 1.5vw;
+    margin-top: 2vw;
+    border: 1px solid white;
+    border-radius: 2vw;
+    text-transform: uppercase;
+    color:white;
+    font-size: 2vw;
+    text-decoration: none;
+}

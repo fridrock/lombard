@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/css/default.css" rel="stylesheet">
+    <link href="/static/css/form.css" rel="stylesheet">
+    <title>Внесение суммы</title>
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<form th:action="@{/obligations/make-contribution/{id}(id=${obligation.getObligationId()})}"
+      th:method="patch"
+      th:object="${contributionDTO}"
+      class="formCustom">
+    <div>
+        <label for="contribution">Внесите сумму</label>
+        <input type="text" id="contribution" name="contribution" th:field="*{contribution}" required="required"/>
+        <p th:if="${#fields.hasErrors('contribution')}" class="error">Сумма пополнения должна быть числом больше 1</p>
+    </div>
+    <button type="submit">Внести</button>
+</form>
+</body>
+</html>

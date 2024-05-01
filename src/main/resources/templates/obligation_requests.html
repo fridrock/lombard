@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="/static/css/default.css" rel="stylesheet">
+    <link href="/static/css/obligationRequests.css" rel="stylesheet">
+    <title>Заявки</title>
+</head>
+<body>
+<div th:replace="/header :: header"> </div>
+<h1>Заявки</h1>
+
+<div th:each="obligationRequest : ${obligationRequests}" class="obligationRequestsList">
+    <div class="obligationRequest">
+        <div class="obligationRequestInfo">
+            <p th:text="'Описание:'+${obligationRequest.getDescription()}" class="obligationRequest_description"></p>
+            <p th:text="'Цена:'+${obligationRequest.getOfferedPrice()}" class="obligationRequest_offeredPrice"></p>
+            <p th:text="'Статус:'+${obligationRequest.getStatus()}" class="obligationRequest_status"></p>
+        </div>
+        <img th:src="'/photos/'+${obligationRequest.getPhotoName()}" class="obligationRequest_photo"/>
+    </div>
+</div>
+<a href="/obligation-requests/create" class="createObligationRequestLink"> Создать заявку</a>
+</body>
+</html>

@@ -1,0 +1,52 @@
+h1{
+    font-size: 3vw;
+    text-transform: uppercase;
+    margin-top: 3vw;
+}
+.obligationRequestsList{
+    margin-top: 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    backdrop-filter: blur(10vw);
+    border-radius: 2vw;
+    padding: 2vw;
+}
+.obligationRequest{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 2vw;
+    padding: 2vw;
+    border:1px solid white;
+}
+.obligationRequestInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    font-size: 2vw;
+}
+.obligationRequestInfo > p{
+    margin-top: 1vw;
+}
+.obligationRequest_description{}
+.obligationRequest_offeredPrice{}
+.obligationRequest_status{}
+.obligationRequest_photo{
+    width: 20vw;
+    margin-left: 3vw;
+}
+.createObligationRequestLink{
+    background: transparent;
+    margin-top: 3vw;
+    text-decoration: none;
+    backdrop-filter: blur(2vw);
+    padding: 0.5vw 1.5vw;
+    border-radius: 2vw;
+    border: 1px solid white;
+    color: white;
+    font-size: 2vw;
+    text-transform: uppercase;
+}

@@ -1,0 +1,19 @@
+.adminRoutes{
+    padding: 2vw;
+    border-radius: 2vw;
+    margin-top: 5vw;
+    backdrop-filter: blur(2vw);
+}
+.adminRoutes > a{
+    background: transparent;
+    padding: 0.5vw 1.5vw;
+    border-radius: 2vw;
+    border: 1px solid white;
+    color: white;
+    font-size: 2vw;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.adminRoutes > a:last-child{
+    margin-left: 2vw;
+}

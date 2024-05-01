@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/static/css/default.css" rel="stylesheet">
+    <link href="/static/css/adminObligationsRequests.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<div th:each="obligationRequest : ${obligationRequests}" class="obligationRequestsList">
+    <div class="obligationRequest">
+        <div class="obligationRequestInfo">
+            <p th:text="'Описание:'+${obligationRequest.getDescription()}" class="obligationRequest_description"></p>
+            <p th:text="'Цена:'+${obligationRequest.getOfferedPrice()}" class="obligationRequest_offeredPrice"></p>
+            <a th:href="@{/admin/obligation-requests/accept/{id}(id=${obligationRequest.getObligationRequestId()})}">Принять</a>
+            <a th:href="@{/admin/obligation-requests/decline/{id}(id=${obligationRequest.getObligationRequestId()})}">Отклонить</a>
+        </div>
+        <img th:src="'/photos/'+${obligationRequest.getPhotoName()}" class="obligationRequest_photo"/>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Создать заявку</title>
+    <link href="/static/css/default.css" rel="stylesheet">
+    <link href="/static/css/form.css" rel="stylesheet">
+</head>
+<body>
+<div th:replace="/header :: header"></div>
+<form th:action="@{/obligation-requests/create}" th:object="${obligationRequest}" th:method="post"
+      enctype="multipart/form-data" class="formCustom">
+    <div>
+        <label for="description">Описание предложенного товара:</label>
+        <input type="text" id="description" name="description" th:field="*{description}"/>
+        <p th:if="${#fields.hasErrors('description')}" class="error">Описание не должно быть пустым</p>
+    </div>
+    <div>
+        <label for="offeredPrice">Предложите свою цену</label>
+        <input id="offeredPrice" name="offeredPrice" th:field="*{offeredPrice}"/>
+        <p th:if="${#fields.hasErrors('offeredPrice')}" class="error">Неправильное значение цены</p>
+    </div>
+    <div>
+        <input type="file" name="image" accept="image/*" class="form-control-file" required="required">
+    </div>
+    <button type="submit">Создать заявку</button>
+</form>
+</body>
+</html>

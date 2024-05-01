@@ -1,0 +1,30 @@
+spring:
+  web:
+    resources:
+        static-locations: file:src/main/resources/static/
+  application:
+    name: lombard
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: "jdbc:postgresql://localhost:5432/postgres"
+    hikari:
+      username: root
+      password: root
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+    static-path-pattern: /static/**
+  thymeleaf: # Thymeleaf
+    cache: false
+    mode: HTML
+    encoding: UTF-8
+    prefix: file:src/main/resources/templates/
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: create
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
