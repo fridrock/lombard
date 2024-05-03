@@ -38,7 +38,7 @@ public class User {
   @Column(name = "role")
   @Enumerated(EnumType.STRING)
   private Role role = Role.CLIENT;
-  @Size(min = 6, max = 30)
+  @Size(min = 6, max = 100)
   private String password;
   @OneToMany(mappedBy="user")
   private List<ObligationRequest> requests;

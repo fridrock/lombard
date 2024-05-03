@@ -3,6 +3,7 @@ package com.example.lombard.api.facade;
 
 import com.example.lombard.api.dto.MakeContributionDTO;
 import com.example.lombard.core.exception.LessMoneyException;
+import com.example.lombard.core.security.SecurityContextHolderUtils;
 import com.example.lombard.core.service.ObligationService;
 import com.example.lombard.core.service.UserService;
 import lombok.AllArgsConstructor;
@@ -15,8 +16,7 @@ public class ObligationFacade {
   private final ObligationService obligationService;
   private final UserService userService;
   public void getObligations(Model model){
-    // TODO change to getting userId from authentication
-    Long userId = Long.valueOf(1);
+    Long userId = SecurityContextHolderUtils.getUserId();
     model.addAttribute("obligations",obligationService.getObligations(userId));
   }
   public void setObligation(Model model, Long obligationId){
@@ -27,14 +27,12 @@ public class ObligationFacade {
     model.addAttribute("contributionDTO", new MakeContributionDTO(Double.valueOf(0)));
   }
   public void makeContribution(Long obligationId, MakeContributionDTO dto){
-    //TODO change to getting userId from authentication
-    Long userId = Long.valueOf(1);
+    Long userId = SecurityContextHolderUtils.getUserId();
     var user = userService.getUser(userId);
     var obligation = obligationService.findById(obligationId);
     final Double contributionSum = Math.min(dto.getContribution(), obligation.getDebt()-obligation.getContributed());
     if(user.getAccount()<dto.getContribution()){
-      // TODO make exception handling
-      throw new LessMoneyException("Недостаточно средств для внесения указанного платежа");
+      throw new LessMoneyException("Less money for making contribution");
     }else{
       user.setAccount(user.getAccount()-contributionSum);
       userService.saveUser(user);

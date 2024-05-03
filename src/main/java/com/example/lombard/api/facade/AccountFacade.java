@@ -1,8 +1,12 @@
 package com.example.lombard.api.facade;
 
 import com.example.lombard.api.dto.TopUpAccountDTO;
+import com.example.lombard.core.config.SecurityConfig;
+import com.example.lombard.core.security.CustomUserDetails;
+import com.example.lombard.core.security.SecurityContextHolderUtils;
 import com.example.lombard.core.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
@@ -11,8 +15,7 @@ import org.springframework.ui.Model;
 public class AccountFacade {
   private final UserService userService;
   public void getUserAccount(Model model){
-    //TODO remake to user authentication
-    Long userId = Long.valueOf(1);
+    Long userId = SecurityContextHolderUtils.getUserId();
     model.addAttribute("user",  userService.getUser(userId));
   }
   public void setUser(Model model, Long userId){

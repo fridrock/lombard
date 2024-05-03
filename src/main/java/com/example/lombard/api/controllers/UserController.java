@@ -18,12 +18,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class UserController {
   private final UserFacade userFacade;
 
-  @GetMapping("/create")
-  public String getCreateUserPage(Model model) {
-    userFacade.getCreateUserPage(model);
-    return "create_user";
+  @GetMapping("/login")
+  public String getLoginPage(){
+    return "login";
   }
 
+  @GetMapping("/create")
+  public String getCreateUserPage(Model model) {
+    userFacade.setEmptyUser(model);
+    return "create_user";
+  }
 
   @PostMapping("/create")
   public String getCreateUserPage(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
@@ -31,6 +35,6 @@ public class UserController {
       return "create_user";
     }
     userFacade.createUser(user);
-    return "redirect:/";
+    return "redirect:/users/login";
   }
 }

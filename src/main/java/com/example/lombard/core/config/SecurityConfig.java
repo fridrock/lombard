@@ -2,12 +2,10 @@ package com.example.lombard.core.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 
 @Configuration
 public class SecurityConfig {
@@ -21,8 +19,28 @@ public class SecurityConfig {
     return httpSecurity
         .csrf(csrf -> csrf.disable())
         .cors(cors -> cors.disable())
-        .authorizeHttpRequests((request)->request.anyRequest().permitAll())
-        .httpBasic(Customizer.withDefaults())
+        .authorizeHttpRequests((request)->{
+          request
+              .requestMatchers("/").permitAll()
+              .requestMatchers("/users/**").permitAll()
+              .requestMatchers("/static/**").permitAll()
+              .requestMatchers("/admin/confirm").authenticated()
+              .requestMatchers("/admin/**").hasAuthority("ADMIN")
+              .anyRequest().authenticated();
+        })
+        .formLogin(form->{
+          form
+              .loginPage("/users/login")
+              .loginProcessingUrl("/users/perform-login");
+        })
+        .logout(logout->{
+          logout.logoutUrl("/users/logout");
+        })
+        .exceptionHandling(eh->{
+          eh.accessDeniedHandler(((request, response, accessDeniedException) -> {
+            response.sendRedirect("/admin/confirm");
+          }));
+        })
         .build();
   }
 }

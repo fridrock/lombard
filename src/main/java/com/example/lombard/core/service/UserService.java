@@ -16,4 +16,7 @@ public class UserService {
   public User getUser(Long userId){
     return userRepository.findById(userId).orElseThrow(()->new UserNotFoundException("No such user"));
   }
+  public User findUserByUsername(String username){
+    return userRepository.findByUserName(username);
+  }
 }

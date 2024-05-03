@@ -1,6 +1,7 @@
 package com.example.lombard.api.facade;
 
 import com.example.lombard.core.exception.LessMoneyException;
+import com.example.lombard.core.security.SecurityContextHolderUtils;
 import com.example.lombard.core.service.PhotoService;
 import com.example.lombard.core.service.ProductService;
 import com.example.lombard.core.service.UserService;
@@ -22,13 +23,11 @@ public class ProductFacade {
   }
   @SneakyThrows
   public void sellProduct(Long productId){
-    //TODO remake on getting from authentication
-    Long userId = Long.valueOf(1);
+    Long userId = SecurityContextHolderUtils.getUserId();
     var user = userService.getUser(userId);
     var product = productService.findProductById(productId);
     if(user.getAccount()<product.getPrice()){
-      //TODO make error handling
-      throw new LessMoneyException("Недостаточно средств для осуществления операции");
+      throw new LessMoneyException("Less money for buying product");
     }
     user.setAccount(user.getAccount()-product.getPrice());
     userService.saveUser(user);
