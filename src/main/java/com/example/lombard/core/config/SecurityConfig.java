@@ -17,8 +17,10 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
     return httpSecurity
+        //Чтобы работали POST запросы
         .csrf(csrf -> csrf.disable())
         .cors(cors -> cors.disable())
+        // Правила авторизации пользователей
         .authorizeHttpRequests((request)->{
           request
               .requestMatchers("/").permitAll()
