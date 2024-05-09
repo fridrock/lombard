@@ -1,0 +1,10 @@
+.regLink {
+    padding: 0.5vw 1.5vw;
+    border: 1px solid white;
+    color: white;
+    font-size: 2vw;
+    border-radius: 2vw;
+    text-transform: uppercase;
+    text-decoration: none;
+    margin-top: 3vw;
+}

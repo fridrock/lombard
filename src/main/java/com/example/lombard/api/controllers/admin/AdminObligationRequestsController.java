@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/admin/obligation-requests")
-public class AdminObligationRequests {
+public class AdminObligationRequestsController {
   private final AdminFacade adminFacade;
 
   @GetMapping

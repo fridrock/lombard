@@ -6,10 +6,10 @@ spring:
     name: lombard
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: "jdbc:postgresql://localhost:5432/postgres"
+    url: "jdbc:postgres://fridrock:cCpcXW3QFzbFyY8wVyvDm4Av3IXidG09@dpg-coub2k0l6cac73cff8kg-a/lombard_db"
     hikari:
-      username: root
-      password: root
+      username: fridrock
+      password: cCpcXW3QFzbFyY8wVyvDm4Av3IXidG09@dpg-coub2k0l6cac73cff8kg-a
   mvc:
     hiddenmethod:
       filter:
