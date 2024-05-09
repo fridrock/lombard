@@ -10,13 +10,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
   private final UserRepository userRepository;
-  public void saveUser(User user){
+
+  public void saveUser(User user) {
     userRepository.save(user);
   }
-  public User getUser(Long userId){
-    return userRepository.findById(userId).orElseThrow(()->new UserNotFoundException("No such user"));
+
+  public User getUser(Long userId) {
+    return userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException("No such user"));
   }
-  public User findUserByUsername(String username){
+
+  public User findUserByUsername(String username) {
     return userRepository.findByUserName(username);
   }
 }

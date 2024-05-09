@@ -12,6 +12,7 @@
         <label for="username">Имя пользователя:</label>
         <input type="text" id="username" name="username" th:field="*{userName}">
         <p  th:if="${#fields.hasErrors('userName')}" class="error">Имя пользователя не может быть пустым</p>
+        <p  th:if="${error}" th:text="${error}" class="error"></p>
     </div>
     <div>
         <label for="password">Пароль:</label>

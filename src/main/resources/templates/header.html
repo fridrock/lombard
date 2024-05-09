@@ -1,6 +1,7 @@
-<header th:fragment="header">
+<header th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
     <a href="/obligation-requests">Запросы на сдачу</a>
     <a href="/obligations">Сданные предметы</a>
     <a href="/products">Доступные продукты</a>
     <a href="/account">Кошелек</a>
+    <a href="/users/logout" class="goToLogin" sec:authorize="isAuthenticated()">Выйти</a>
 </header>

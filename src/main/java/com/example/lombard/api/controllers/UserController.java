@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/users")
@@ -19,7 +20,7 @@ public class UserController {
   private final UserFacade userFacade;
 
   @GetMapping("/login")
-  public String getLoginPage(){
+  public String getLoginPage() {
     return "login";
   }
 
@@ -30,10 +31,18 @@ public class UserController {
   }
 
   @PostMapping("/create")
-  public String getCreateUserPage(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
-    if(bindingResult.hasErrors()){
+  public String getCreateUserPage(Model model,
+                                  @ModelAttribute("user") @Valid User user,
+                                  BindingResult bindingResult) {
+    if (bindingResult.hasErrors()) {
       return "create_user";
     }
+
+    if (userFacade.userExists(user.getUserName())) {
+      model.addAttribute("error", "Пользователь с таким именем уже существует");
+      return "create_user";
+    }
+
     userFacade.createUser(user);
     return "redirect:/users/login";
   }

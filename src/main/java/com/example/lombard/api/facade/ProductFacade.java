@@ -10,8 +10,6 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 
-import java.io.IOException;
-
 @AllArgsConstructor
 @Component
 public class ProductFacade {
